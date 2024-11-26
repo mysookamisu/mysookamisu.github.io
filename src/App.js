@@ -64,10 +64,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <audio id="audio" autoPlay loop>
-        <source src={"/merry-go-round-of-life-howls-moving-castle.mp3"} type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
+      
       <div className="butterflies">
         {butterflies?.map((position, index) => (
           <img
@@ -88,7 +85,14 @@ const App = () => {
           {showBirthdayText ? <h1 style={{margin: '10px'}} >Happy Birthday!</h1> : <h1 style={{margin: '10px'}}>I Love You!</h1>}
           {<h1 style={{margin: 0}}>My Sookamisu!</h1>}
         </div>
+        <div>
+        <audio controls id="audio" autoPlay loop>
+          <source src={"/merry-go-round-of-life-howls-moving-castle.mp3"} type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
       </div>
+      </div>
+      
     </div>
   );
 };
