@@ -6,17 +6,25 @@ const App = () => {
   const [showBirthdayText, setShowBirthdayText] = useState(false);
 
 
-   const birthdayShamsi = { year: 1381, month: 9, day: 7 }; // 7 Azar 1381
-    const birthdayGregorian = jalaali.toGregorian(birthdayShamsi.year, birthdayShamsi.month, birthdayShamsi.day);
+   // Iran timezone offset in minutes (UTC+3:30)
+  const IRAN_TIMEZONE_OFFSET = 210;
+
+  // Helper function to get Iran's current time
+  const getIranDate = () => {
+    const now = new Date();
+    const utcTime = now.getTime() + now.getTimezoneOffset() * 60000; // Convert to UTC
+    return new Date(utcTime + IRAN_TIMEZONE_OFFSET * 60000); // Convert to Iran time
+  };
+
+  const birthdayShamsi = { year: 1381, month: 9, day: 7 }; // 7 Azar 1381
+  const birthdayGregorian = jalaali.toGregorian(birthdayShamsi.year, birthdayShamsi.month, birthdayShamsi.day);
 
   // Current year in Shamsi calendar
-  const currentDate = new Date();
-  console.log(jalaali.toJalaali(currentDate))
-
-  const currentShamsiYear = jalaali.toJalaali(currentDate).jy;
+  const iranDate = getIranDate();
+  const currentShamsiYear = jalaali.toJalaali(iranDate).jy;
 
   // Calculate the number of butterflies
-   const butterflyCount = currentShamsiYear - birthdayShamsi.year;
+  const butterflyCount = currentShamsiYear - birthdayShamsi.year;
   console.log(butterflyCount)
 
   // Generate random positions for each butterfly
@@ -36,8 +44,8 @@ const App = () => {
 
   useEffect(() => {
     const checkBirthday = () => {
-      const currentDate = new Date();
-      const currentShamsi = jalaali.toJalaali(currentDate);
+      const iranDate = getIranDate();
+      const currentShamsi = jalaali.toJalaali(iranDate);
 
       // Check if today is her birthday
       if (currentShamsi.jm === birthdayShamsi.month && currentShamsi.jd === birthdayShamsi.day) {
@@ -51,9 +59,10 @@ const App = () => {
     checkBirthday();
 
     // Optional: Re-check at midnight for live updates
-    const midnight = new Date();
-    midnight.setHours(24, 0, 0, 0); // Set to midnight
-    const timeUntilMidnight = midnight - new Date();
+    const iranDate = getIranDate();
+    const midnight = new Date(iranDate);
+    midnight.setHours(24, 0, 0, 0); // Set to midnight Iran time
+    const timeUntilMidnight = midnight - iranDate;
     console.log(timeUntilMidnight)
     const timeout = setTimeout(() => {
       checkBirthday(); // Re-check on the next day
