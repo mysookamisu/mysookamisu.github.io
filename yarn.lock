@@ -6011,6 +6011,11 @@ jake@^10.8.5:
     filelist "^1.0.4"
     minimatch "^3.1.2"
 
+jalaali-js@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/jalaali-js/-/jalaali-js-1.2.7.tgz#7694cab2d0ca21830766faf08278e71c204cc4fe"
+  integrity sha512-gE+YHWSbygYAoJa+Xg8LWxGILqFOxZSBQQw39ghel01fVFUxV7bjL0x1JFsHcLQ3uPjvn81HQMa+kxwyPWnxGQ==
+
 jest-changed-files@^27.5.1:
   version "27.5.1"
   resolved "https://registry.npmjs.org/jest-changed-files/-/jest-changed-files-27.5.1.tgz"

@@ -1,8 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import React, { useEffect, useState } from "react";
 import jalaali from "jalaali-js";
-// import music from "./assets/lili-aaron.mp3";
 import "./App.css";
 
 const App = () => {
@@ -24,7 +21,7 @@ const App = () => {
 
   // Generate random positions for each butterfly
   const [butterflies, setButterflies] = useState([]);
-
+  
   useEffect(() => {
     const generateButterflies = () => {
       const positions = Array.from({ length: butterflyCount }).map(() => ({
@@ -34,6 +31,7 @@ const App = () => {
       setButterflies(positions);
     };
     generateButterflies();
+    
   }, [butterflyCount]);
 
   useEffect(() => {
@@ -66,10 +64,10 @@ const App = () => {
 
   return (
     <div className="app">
-      {/* <audio autoPlay loop>
-        <source src={music} type="audio/mp3" />
+      <audio id="audio" autoPlay loop>
+        <source src={"/merry-go-round-of-life-howls-moving-castle.mp3"} type="audio/mp3" />
         Your browser does not support the audio element.
-      </audio> */}
+      </audio>
       <div className="butterflies">
         {butterflies?.map((position, index) => (
           <img
